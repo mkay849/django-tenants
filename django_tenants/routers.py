@@ -34,7 +34,10 @@ class TenantSyncRouter(object):
             return False
 
         connection = connections[db]
-        if connection.schema_name == get_public_schema_name():
+        if hasattr(settings, 'TENANT_SPECIFIC_APPS') and app_label not in connection.schema_name and \
+                self.app_in_list(app_label, settings.TENANT_SPECIFIC_APPS):
+            return False
+        elif connection.schema_name == get_public_schema_name():
             if not self.app_in_list(app_label, settings.SHARED_APPS):
                 return False
         else:
