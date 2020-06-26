@@ -6,8 +6,11 @@ django-tenants
 
 .. image:: https://badge.fury.io/py/django-tenants.svg
     :target: http://badge.fury.io/py/django-tenants
-.. image:: https://travis-ci.org/tomturner/django-tenants.svg?branch=master
-    :target: https://travis-ci.org/tomturner/django-tenants
+
+.. image:: https://github.com/tomturner/django-tenants/workflows/code/badge.svg
+    :alt: Build status
+    :target: https://github.com/tomturner/django-tenants/actions
+
 .. image:: https://readthedocs.org/projects/pip/badge/?version=latest
     :target: https://django-tenants.readthedocs.io/en/latest/
 
@@ -160,7 +163,7 @@ Create your tenant model
 
     class Client(TenantMixin):
         name = models.CharField(max_length=100)
-        paid_until =  models.DateField()
+        paid_until = models.DateField()
         on_trial = models.BooleanField()
         created_on = models.DateField(auto_now_add=True)
 

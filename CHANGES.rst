@@ -4,14 +4,53 @@ Changelog
 
 This changelog is used to track all major changes to django-tenants.
 
-v3.0.0 (UNRELEASED)
+
+v3.1.0 (26 April 2020)
+======================
+
+- Allowed a schema to be renamed. #388
+- Stopped a crash id logging with the public tenant #358
+- Fix clone_tenant command #379
+- Cloning SQL changed to allow it work on AWS etc #381
+- Now testing with workflow instead of Travis CI
+- Read the docs now work again
+
+v3.0.3 (16 April 2020)
+======================
+
+- Fixed a problem with clone tenant
+
+v3.0.2 (15 April 2020)
+======================
+
+- You can now clone a tenants with the clone_tenant command #322
+- Fixed some issues with docker-compose and the example project
+- Refactor some classes/methods #325
+
+v3.0.1 (17 Feb 2020)
+===================
+
+- Make "test login" add tenant to request #340
+
+**Fixes**
+
+- Use field.attname instead of field.name in create_tenant.py
+
+v3.0.0 (9 Jan 2020)
 ===================
 
 - Django 3 support
+- Removed psycopg2 as a requirement #317
+- Changed docker image to python 3.7 image
+- Do not pip install --quiet while testing
+- Added database support to validate schemas #312
+- allow to disable new coloring of tenant app in admin #272
 
 **Fixes**
 
 - Fixed an issue where tenant-specific application static files (stylesheets, Javascript, images etc.), that have not been collected yet using ``collectstatic_schemas``, were not being found using ``TenantStaticFilesStorage``. Fixes `#265 <https://github.com/tomturner/django-tenants/issues/265>`_.
+- Fix a crash (ProgrammingError) when attempting to create a schema named like a SQL keyword (select, where, ...)
+Allow to create a tenant named with only numbers (123). #302 #307
 
 v2.2.3 (15 April 2019)
 ======================

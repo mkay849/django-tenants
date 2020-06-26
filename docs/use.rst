@@ -220,6 +220,19 @@ If you don't specify a schema, you will be prompted to enter one. Otherwise, you
 
     ./manage.py tenant_command loaddata --schema=customer1
 
+
+
+all_tenants_command
+~~~~~~~~~~~~~~~~~~~
+
+To run any command on an every schema, you can use the special ``all_tenants_command``, which creates a wrapper around your command so that it run on every schema. For example
+
+.. code-block:: bash
+
+    ./manage.py all_tenants_command loaddata
+
+
+
 create_tenant_superuser
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -237,7 +250,7 @@ The command ``create_tenant`` creates a new schema
 
 .. code-block:: bash
 
-    ./manage.py create_tenant --domain_url=newtenant.net --schema_name=new_tenant --name=new_tenant --description="New tenant"
+    ./manage.py create_tenant --domain-domain=newtenant.net --schema_name=new_tenant --name=new_tenant --description="New tenant"
 
 The argument are dynamic depending on the fields that are in the ``TenantMixin`` model.
 For example if you have a field in the ``TenantMixin`` model called company you will be able to set this using --company=MyCompany.
@@ -255,6 +268,43 @@ The command ``delete_tenant`` deletes a schema
     ./manage.py delete_tenant
 
 Warning this command will delete a tenant and PostgreSQL schema regardless if ``auto_drop_schema`` is set to False.
+
+
+clone_tenant
+~~~~~~~~~~~~~
+
+The command ``clone_tenant`` clones a schema.
+
+.. code-block:: bash
+
+    ./manage.py clone_tenant
+
+
+There are some options to that can be set. You can view all the options by running
+
+.. code-block:: bash
+
+    ./manage.py clone_tenant -h
+
+Credits to `pg-clone-schema <https://github.com/denishpatel/pg-clone-schema>`_.
+
+rename_schema
+~~~~~~~~~~~~~
+
+The command ``rename_schema`` renames a schema in the db and updates the Client associated with it.
+
+.. code-block:: bash
+
+    ./manage.py rename_schema
+
+It will prompt you for the current name of the schema, and what it should be renamed to.
+
+You can provide them with these arguments:
+
+.. code-block:: bash
+
+    ./manage.py rename_schema --rename_from old_name --rename_to new_name
+
 
 PostGIS
 -------
